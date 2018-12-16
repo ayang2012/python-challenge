@@ -26,13 +26,15 @@ with open(csvpath, newline='') as csvfile:
     all_data = [row for row in csvreader]
     
     #---------------------------------------------------------------------------------        
-    months = 0
+    months = 1
     total = 0
     prev_month = 0
     total_diff = 0
     # Read each row of data after the header
     prev_month = all_data[0]
     prev_month = prev_month[1]
+
+    total = float(prev_month)
    
     max_change = 0
     min_change = 0
@@ -52,7 +54,7 @@ with open(csvpath, newline='') as csvfile:
             min_row = row
    
 
-    avg_change = round(float(diff)/(months-1), 0)
+    avg_change = round(float(total_diff)/(months-1), 0)
     print("Financial Analysis")
     print("--------------------------------------")
     print(f"Total Months: {months}")
@@ -65,3 +67,11 @@ with open(csvpath, newline='') as csvfile:
     # print(all_data[0])
     # print(all_data[0][0])
     # print(all_data[0][1])
+
+print("Financial Analysis", file=open("answers.txt", "a"))
+print("--------------------------------------", file=open("answers.txt", "a"))
+print(f"Total Months: {months}", file=open("answers.txt", "a"))
+print(f"Total: ${total}", file=open("answers.txt", "a"))
+print(f"Average Change: ${avg_change}", file=open("answers.txt", "a"))
+print(f"Greatest increase in profits: {max_row} {max_change}", file=open("answers.txt", "a"))
+print(f"Greatest decrease in profits: {min_row} {min_change}", file=open("answers.txt", "a"))
